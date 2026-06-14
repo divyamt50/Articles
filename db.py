@@ -3,8 +3,11 @@ from collections.abc import AsyncGenerator
 
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 from sqlalchemy.orm import DeclarativeBase
+from dotenv import load_dotenv
 
-DB_URL = os.env(DB_URL, 'postgres+psycopg://postgres:password@localhost:5432/fastapi_db')
+load_dotenv()
+
+DB_URL = os.getenv("DB_URL", 'postgresql+psycopg://postgres:password@localhost:5432/fastapi_db')
 
 engine = create_async_engine(
     DB_URL,
